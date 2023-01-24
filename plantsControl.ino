@@ -4,8 +4,8 @@ const int lightSensorPin = A1;      // Pin für Lichtsensor
 const int pumpPin = 2;              // Pin für Pumpe
 const int lightPin = 3;             // Pin für Licht
 // moistureSensor
-const int AirValue = 620;           // Value für Trockensten Punkt
-const int WaterValue = 310;         // Value für Feuchtesten Punkt
+const int AirValue = 520;           // Value für Trockensten Punkt
+const int WaterValue = 260;         // Value für Feuchtesten Punkt
 int soilMoistureValue = 0;          // Aktuell gemessene Feuchtigkeit in Volt(raw output vom Sensor)
 int soilmoisturepercent=0;          // Aktuell gemessene Feuchtigkeit in Prozent, wird später berechnet
 
