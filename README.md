@@ -1,34 +1,20 @@
 # README
 
-Dieses Arduino-Programm misst die Feuchtigkeit und Helligkeit und schaltet gegebenenfalls eine Pumpe bzw. ein Licht an.
+This code is for controlling a pump based on soil moisture readings from a sensor.
 
-## Hardware-Anforderungen
-- Arduino-Board
-- Feuchtigkeitssensor
-- Lichtsensor
-- Pumpe
-- Licht
+## Pin Definitions
+- `moistureSensorPin` is set to A0 and is used for the soil moisture sensor input.
+- `pumpPin` is set to 2 and is used for the pump control output.
 
-## Pin-Zuordnung
-- Feuchtigkeitssensor: A0
-- Lichtsensor: A1
-- Pumpe: 2
-- Licht: 3
+## Variables
+- `AirValue` is set to 520 and is used as the maximum possible raw reading from the sensor (corresponding to the driest soil).
+- `WaterValue` is set to 260 and is used as the minimum possible raw reading from the sensor (corresponding to the wettest soil).
+- `soilMoistureValue` is the current raw reading from the sensor in volts.
+- `soilmoisturepercent` is the current soil moisture level in percent, calculated from `soilMoistureValue`.
 
-## Verwendung
-1. Verbinden Sie den Feuchtigkeitssensor mit dem entsprechenden Pin (A0) am Arduino-Board.
-2. Verbinden Sie den Lichtsensor mit dem entsprechenden Pin (A1) am Arduino-Board.
-3. Verbinden Sie die Pumpe mit dem entsprechenden Pin (2) am Arduino-Board.
-4. Verbinden Sie das Licht mit dem entsprechenden Pin (3) am Arduino-Board.
-5. Laden Sie den Code auf das Arduino-Board hoch.
+## Functionality
+In the `setup` function, serial communication is initiated at a baud rate of 9600 bps and the pins for the moisture sensor, pump, and light are set to their respective INPUT/OUTPUT modes.
 
-## Anmerkungen
-- Der Schwellenwert für die Feuchtigkeit, ab dem die Pumpe eingeschaltet wird, ist derzeit auf 50% festgelegt. Dieser Wert kann nach Bedarf angepasst werden.
-- Der Schwellenwert für die Helligkeit, ab dem das Licht eingeschaltet wird, ist derzeit auf 800 festgelegt. Dieser Wert kann nach Bedarf angepasst werden.
-- Der Schwellenwert für Trockensten Punkt ist auf 620 und für Feuchtesten Punkt auf 310 festgelegt. Dieser Wert kann nach Bedarf angepasst werden.
+In the `loop` function, the raw soil moisture value is read from the sensor and printed to the serial interface. The raw reading is then mapped to a percentage value, which is also printed to the serial interface.
 
-## Troubleshooting
-- Stellen Sie sicher, dass alle Verbindungen korrekt hergestellt sind und alle benötigten Komponenten vorhanden sind.
-- Überprüfen Sie die Schwellenwerte für Feuchtigkeit und Helligkeit und stellen Sie sicher, dass sie den Anforderungen entsprechen.
-- Überprüfen Sie die Schwellenwerte für Trockensten Punkt und Feuchtesten Punkt und stellen Sie sicher, dass sie den Anforderungen entsprechen.
-- Wenn das Programm nicht wie erwartet funktioniert, überprüfen Sie die serielle Ausgabe, um mögliche Fehler zu erkennen.
+If the soil moisture level is below 50%, the pump is turned on (output set to HIGH). If the soil moisture level is above 50%, the pump is turned off (output set to LOW).
