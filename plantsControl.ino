@@ -1,6 +1,6 @@
 // Define Pins
 const int moistureSensorPin = A0;   // Pin für Feuchtigkeitssensor
-const int pumpPin = 2;              // Pin für Pumpe
+const int relayPin = 2;              // Pin für Pumpe
 
 // moistureSensor
 const int AirValue = 520;           // Value für Trockensten Punkt
@@ -11,8 +11,7 @@ int soilmoisturepercent=0;          // Aktuell gemessene Feuchtigkeit in Prozent
 void setup() {
     Serial.begin(9600);             // Open serial interface, set baud rate to 9600 bps
     pinMode(moistureSensorPin, INPUT);  // Set pin to INPUT
-    pinMode(lightPin, OUTPUT);          // Set pin to OUTPUT
-    pinMode(pumpPin, OUTPUT);           // Set pin to OUTPUT
+    pinMode(relayPin, OUTPUT);           // Set pin to OUTPUT
 
 void loop() {
     int soilMoistureValue = analogRead(moistureSensorPin);
@@ -35,7 +34,7 @@ void loop() {
 
     // Pumpe an/aus schalten
     if (soilmoisturepercent < 50) {     // Wenn die Feuchtigkeit bei unter 50% liegt pumpe an sonst aus / Wert muss noch verändert werden
-        digitalWrite(pumpPin, HIGH);
+        digitalWrite(relayPin, HIGH);
     } else {
-        digitalWrite(pumpPin, LOW);
+        digitalWrite(relayPin, LOW);
     }
