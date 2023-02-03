@@ -12,6 +12,7 @@ void setup() {
     Serial.begin(9600);             // Open serial interface, set baud rate to 9600 bps
     pinMode(moistureSensorPin, INPUT);  // Set pin to INPUT
     pinMode(relayPin, OUTPUT);           // Set pin to OUTPUT
+}
 
 void loop() {
     int soilMoistureValue = analogRead(moistureSensorPin);
@@ -19,22 +20,20 @@ void loop() {
     soilmoisturepercent = map(soilMoistureValue, AirValue, WaterValue, 0, 100);     // Mapping Volt input zu Prozent
 
     // Ausgabe in Prozent
-    if(soilmoisturepercent >= 100)
-    {
+    if (soilmoisturepercent >= 100) {
         Serial.println("100 %");
-    }
-    else if(soilmoisturepercent <=0)
-    {
+    } else if (soilmoisturepercent <= 0) {
         Serial.println("0 %");
-    }
-    else if(soilmoisturepercent >0 && soilmoisturepercent < 100) {
+    } else if (soilmoisturepercent > 0 && soilmoisturepercent < 100) {
         Serial.print(soilmoisturepercent);
         Serial.println("%");
     }
 
     // Pumpe an/aus schalten
-    if (soilmoisturepercent < 50) {     // Wenn die Feuchtigkeit bei unter 50% liegt pumpe an sonst aus / Wert muss noch verändert werden
+    if (soilmoisturepercent <
+        50) {     // Wenn die Feuchtigkeit bei unter 50% liegt pumpe an sonst aus / Wert muss noch verändert werden
         digitalWrite(relayPin, HIGH);
     } else {
         digitalWrite(relayPin, LOW);
     }
+}
