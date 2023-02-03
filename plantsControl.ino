@@ -16,7 +16,6 @@ void setup() {
 
 void loop() {
     int soilMoistureValue = analogRead(moistureSensorPin);
-    Serial.println(soilMoistureValue);
     soilmoisturepercent = map(soilMoistureValue, AirValue, WaterValue, 0, 100);     // Mapping Volt input zu Prozent
 
     // Ausgabe in Prozent
