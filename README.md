@@ -32,7 +32,7 @@ You have to install the following libraries:
 Connect the sensor to the ESP8266/ESP32 as follows:
 ![wiring diagram](https://github.com/schroeder-is/plantsControl/blob/master/Schaltung.PNG)
 
-### Setup the 
+### Setup the Code
 
 1. Clone the repository
 2. Host you InfluxDB instance or use the InfluxDB Cloud
